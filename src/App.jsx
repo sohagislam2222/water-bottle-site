@@ -2,7 +2,10 @@ import { useState } from 'react';
 import Bottles from './Components/Bottles/Bottles';
 import Cards from './Components/Cards/Cards';
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
+import { Warning } from 'postcss';
 function App() {
   const [bottles, setBottles] = useState([]);
   const [cards, setCards] = useState([]);
@@ -24,7 +27,7 @@ function App() {
     if (!isExist) {
       setCards([...cards, bottle]);
     } else {
-      alert('You have already select this item');
+      toast.warn('Already selected !');
     }
   };
   console.log(cards);
@@ -41,6 +44,7 @@ function App() {
         <div className="w-full lg:w-[35%] bg-orange-100 rounded-lg p-5">
           <Cards cards={cards} handleRemove={handleRemove}></Cards>
         </div>
+        <ToastContainer />
       </div>
     </>
   );
